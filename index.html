@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .moon-sun {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-image: url("img/moon.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-background dark:bg-backgroundD">
+    <!-- Navigation Bar -->
+    <nav class="relative container mx-auto p-6">
+        <div class="flex items-center justify-between">
+            <div class="flex flex-row pt-2 items-center">
+                <img class="object-scale-down h-20" src="img/logo.png" alt="Logo">
+                <div class="font-LexendDeca font-bold text-2xl text-text dark:text-textD">Categories</div>
+            </div>
+            <div class="hidden md:flex space-x-6 text-text dark:text-textD">
+                <a class="font-LexendDeca hover:text-primary dark:hover:text-primaryD" href="#">Features</a>
+                <a class="font-LexendDeca hover:text-primary dark:hover:text-primaryD" href="#">About</a>
+                <a class="font-LexendDeca hover:text-primary dark:hover:text-primaryD" href="#">How It Works</a>
+                <a class="font-LexendDeca hover:text-primary dark:hover:text-primaryD" href="#">Contact</a>
+            </div>
+            <div class="md:flex space-x-3 text-text dark:text-textD items-center">
+            
+                <input data-hs-theme-switch type="checkbox" id="darkSwitch" class="hidden" checked>
+                <label for="darkSwitch" class="moon-sun"></label>
+            </div>
+        </div>
+    </nav>
+    <section id="hero">
+        <div class="container flex flex-col md:flex-row justify-center items-center px-6 mx-auto mt-10 space-x-2 space-y-6 md:space-y-0">
+            <div class="flex flex-col mb-32 space-y-10 md:w-1/2">
+                <h1 class="font-semibold text-text text-2xl dark:text-textD text-center md:text-left">The Classic Game You Know and Love!</h1>
+                <div class="flex flex-col items-start justify-start">
+                    <h1 class="pb-2 bg-gradient-to-r from-primary to-text text-transparent inline-block bg-clip-text font-bold text-5xl bg-gradient-to-r from-primary dark:to-textD m-auto md:m-0">Categories</h1>
+                    <h1 class="font-bold text-text text-4xl dark:text-textD text-center md:text-left">The Must-Have Game for Every Get-Together!</h1>
+                </div>
+                <h1 class="font-regular text-tertiaryD text-xl dark:text-tertiary text-center md:text-left">Get ready to rediscover the joy of classic wordplay with "Categories". Whether you're hosting a party, gathering with friends, or spending quality time with family, our game promises endless entertainment and laughter.</h1>
+                <div class="flex flex-col md:flex-row m-auto md:m-0 items-start">
+                    <a href="https://apps.apple.com/pl/app/liter%C3%B3wki/id1627298485" target="_blank" class="p-3 px-6 pt-2 text-text dark:text-textD bg-tertiary dark:bg-tertiaryD rounded-md baseline text-l font-semibold hover:bg-primary dark:hover:bg-primaryD md:mr-4">
+                        <div class="flex flex-row space-x-3 md:space-x-3 items-center">
+                            <div>Download Now</div>
+                            <img class="object-scale-down h-5" src="img/apple-logo.svg" alt="Logo">
+                        </div>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.GreenEight.literowki" target="_blank" class="p-3 px-6 pt-2 text-text dark:text-textD bg-tertiary dark:bg-tertiaryD rounded-md baseline text-l font-semibold hover:bg-primary dark:hover:bg-primaryD mt-3 md:mt-0">
+                        <div class="flex flex-row space-x-3 md:space-x-3 items-center">
+                            <div>Download Now</div>
+                            <img class="object-scale-down h-5" src="img/android-logo.svg" alt="Logo">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 px-6 flex justify-center md:justify-end space-y-6 md:space-y-0">
+                <img class="hidden dark:block" src="img/mainImgD.png" alt="">
+                <img class="block dark:hidden" src="img/mainImgL.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- Script -->
+    <script>
+        function detectSystemColorScheme() {
+            if (localStorage.getItem('dark-mode') === 'true' || (!('dark-mode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.querySelector('html').classList.remove('dark');
+                return 'light';
+            } else {
+                document.querySelector('html').classList.add('dark');
+                return 'dark';
+            }
+        }
+        function setIconBasedOnColorScheme() {
+            var colorScheme = detectSystemColorScheme();
+            var icon = document.querySelector('.moon-sun');
+            icon.style.backgroundImage = 'url(' + (colorScheme === 'dark' ? 'img/moon.png' : 'img/sun.png') + ')';
+        }
+        document.getElementById('darkSwitch').addEventListener('change', function() {
+            if (!this.checked) {
+                document.querySelector('html').classList.add('dark');
+                localStorage.setItem('dark-mode', 'true');
+            } else {
+                document.querySelector('html').classList.remove('dark');
+                localStorage.setItem('dark-mode', 'false');
+            }
+            setIconBasedOnColorScheme();
+        });
+        setIconBasedOnColorScheme();
+    </script>
+</body>
+</html>
